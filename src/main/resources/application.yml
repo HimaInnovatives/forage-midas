@@ -1,0 +1,20 @@
+server:
+  port: 8080
+
+general:
+  kafka-topic: transactions
+
+spring:
+  kafka:
+    consumer:
+      group-id: midas-consumer
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted.packages: com.jpmc.midascore.foundation
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
